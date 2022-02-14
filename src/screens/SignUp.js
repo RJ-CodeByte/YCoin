@@ -8,7 +8,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import CustomInput from '../utils/CustomInput';
 import CustomButton from '../utils/CustomButton';
 import {CheckBox} from 'react-native-elements';
@@ -23,8 +23,9 @@ export default function SignUpScreen({navigation}) {
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [password, setPassword] = useState('');
-  const [repassword, setRePassword] = useState('');
+  const [repassword, setRePassworcld] = useState('');
   const [iserror, setIsError] = useState(false);
+  const lastname = useRef(null);
 
   const onCheck = () => {
     if (
@@ -56,6 +57,9 @@ export default function SignUpScreen({navigation}) {
             <CustomInput
               placeholder="First Name"
               value={fname}
+              returnKeyType="next"
+              onSubmitEditing={() => lastname.current.focus()}
+              blurOnSubmit={false}
               onChangeText={value => {
                 setFname(value);
               }}
@@ -70,6 +74,7 @@ export default function SignUpScreen({navigation}) {
           <View style={{flex: 1, paddingHorizontal: 10}}>
             <CustomInput
               placeholder="Last Name"
+              inputRef={lastname}
               value={lname}
               onChangeText={value => {
                 setLname(value);

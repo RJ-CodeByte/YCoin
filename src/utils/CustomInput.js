@@ -18,6 +18,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
         placeholder={props.placeholder}
         value={props.value}
         keyboardType={props.keyboardType}
+        ref={props.inputRef}
         returnKeyType={props.returnKeyType}
         secureTextEntry={props.secureText}
         onFocus={()=> {setIsFocused(true)}}
